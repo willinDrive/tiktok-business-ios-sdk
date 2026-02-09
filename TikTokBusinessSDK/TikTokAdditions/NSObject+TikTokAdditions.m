@@ -16,6 +16,8 @@
 #import "TikTokAppEventUtility.h"
 #import "TikTokAppEvent.h"
 #import "TikTokEDPConfig.h"
+#import "TikTokDefaults.h"
+#import "TikTokDefaultsKeys.h"
 
 @implementation NSObject (TikTokAdditions)
 
@@ -46,9 +48,9 @@
         refer = @"";
     }
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:TTSafeString(launchURL.absoluteString) forKey:@"source_url"];
-    [defaults setObject:TTSafeString(refer) forKey:@"refer"];
+    NSUserDefaults *defaults = [TikTokDefaults storage];
+    [defaults setObject:TTSafeString(launchURL.absoluteString) forKey:TikTokDefaultsKeySourceURL];
+    [defaults setObject:TTSafeString(refer) forKey:TikTokDefaultsKeyRefer];
     [defaults synchronize];
 }
 
